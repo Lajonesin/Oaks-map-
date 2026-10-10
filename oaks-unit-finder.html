@@ -895,10 +895,16 @@ document.getElementById('meBtn').addEventListener('click', () => {
   meMsg.textContent = 'Finding you…';
   document.getElementById('meBtn').textContent = '⏹ Stop tracking';
   meWatch = navigator.geolocation.watchPosition(onFix, err => {
-    meMsg.textContent = err.code === 1 ? 'Location access was blocked. Allow location for this page in your browser settings and try again.' : 'Could not get your location. Move to an open area and try again.';
-    document.getElementById('meBtn').textContent = '📍 Find me on the map';
-    meWatch = null;
-  }, {enableHighAccuracy: true, maximumAge: 2000, timeout: 20000});
+    if (err.code === 1) {
+      meMsg.textContent = 'Location access was blocked. Allow location for this page in your browser settings and try again.';
+      document.getElementById('meBtn').textContent = '📍 Find me on the map';
+      if (meWatch !== null) navigator.geolocation.clearWatch(meWatch);
+      meWatch = null;
+    } else {
+      // Timeout / signal unavailable: keep trying, the fix usually arrives shortly.
+      meMsg.textContent = 'Still searching for your GPS signal… stay outside in the open and keep this screen on.';
+    }
+  }, {enableHighAccuracy: true, maximumAge: 5000, timeout: 60000});
 });
 if (CAL_MODE) {
   document.getElementById('calBox').style.display = 'block';
