@@ -949,31 +949,18 @@ if (CAL_MODE) {
    To change dates or colors, edit THEMES and pickThemeId() below. */
 (function () {
   var THEMES = {
-    oaks:        {name: 'The Oaks (classic green)', icon: '🌳', greeting: '',                          primary: '#0b3d2e', dark: '#072a20', accent: '#f59e0b', page: '#eef1ed', side: '#f4f6f3', fx: []},
-    newyear:     {name: "New Year's",               icon: '🎆', greeting: 'Happy New Year!',            primary: '#1f2a44', dark: '#141c30', accent: '#e9b949', page: '#eef0f6', side: '#f3f4f9', fx: ['✨', '🎉', '⭐']},
-    winter:      {name: 'Winter',                   icon: '⛄', greeting: 'Winter at The Oaks',         primary: '#1f4e79', dark: '#153654', accent: '#9ccfff', page: '#ecf2f8', side: '#f2f6fa', fx: ['❄️', '❄️', '✨']},
-    mardigras:   {name: 'Mardi Gras',               icon: '🎭', greeting: 'Laissez les bons temps rouler!', primary: '#4c1d95', dark: '#36146b', accent: '#e9b949', page: '#f1edf8', side: '#f6f3fb', fx: ['🎭', '⚜️', '✨']},
-    valentine:   {name: "Valentine's Day",          icon: '💝', greeting: "Happy Valentine's Day!",     primary: '#9d174d', dark: '#750f39', accent: '#fda4c3', page: '#fbeff3', side: '#fdf4f7', fx: ['💕', '💗', '🌹']},
-    winterlate:  {name: 'Late Winter',              icon: '🌥️', greeting: 'Almost spring!',            primary: '#475569', dark: '#334155', accent: '#cbd5e1', page: '#eff1f4', side: '#f5f6f8', fx: []},
-    stpatrick:   {name: "St. Patrick's Day",        icon: '☘️', greeting: "Happy St. Patrick's Day!",   primary: '#166534', dark: '#0f4a26', accent: '#fbbf24', page: '#edf6ee', side: '#f3f9f4', fx: ['☘️', '🍀', '✨']},
-    bluebonnet:  {name: 'Bluebonnet Season',        icon: '💐', greeting: 'Bluebonnet season!',         primary: '#3949ab', dark: '#283593', accent: '#c5cae9', page: '#eef0fa', side: '#f4f5fc', fx: ['🌸', '💐', '🦋']},
-    easter:      {name: 'Easter',                   icon: '🐣', greeting: 'Happy Easter!',              primary: '#6d4aa8', dark: '#523783', accent: '#f9a8d4', page: '#f7f3fb', side: '#faf7fd', fx: ['🐣', '🥚', '🌷']},
-    showers:     {name: 'April Showers',            icon: '☔', greeting: 'April showers',              primary: '#00796b', dark: '#005a4f', accent: '#80cbc4', page: '#ecf6f5', side: '#f2f9f8', fx: ['💧', '🌧️', '🌱']},
-    garden:      {name: 'May Garden',               icon: '🌻', greeting: 'Happy May!',                 primary: '#8a4b08', dark: '#663706', accent: '#fcd34d', page: '#fdf6e9', side: '#fef9f0', fx: ['🌻', '🐝', '🌼']},
-    patriotic:   {name: 'Patriotic',                icon: '🇺🇸', greeting: '',                         primary: '#1e3a8a', dark: '#152a66', accent: '#dc2626', page: '#eef1f8', side: '#f4f6fb', fx: ['⭐', '🎆', '🇺🇸']},
-    juneteenth:  {name: 'Juneteenth',               icon: '🎉', greeting: 'Happy Juneteenth!',          primary: '#14532d', dark: '#0d3a1f', accent: '#dc2626', page: '#eef5ef', side: '#f4f9f5', fx: ['✨', '🎉', '⭐']},
-    summer:      {name: 'Summer',                   icon: '☀️', greeting: 'Summer at The Oaks',         primary: '#0277bd', dark: '#01579b', accent: '#fde047', page: '#ebf5fb', side: '#f2f8fc', fx: ['☀️', '🌴', '🍉']},
-    heat:        {name: 'Summer Heat',              icon: '🍉', greeting: 'Stay cool!',                 primary: '#bf360c', dark: '#8f2a09', accent: '#fed7aa', page: '#fdf1ea', side: '#fef6f1', fx: ['🍉', '☀️', '🧊']},
-    school:      {name: 'Back to School',           icon: '🍎', greeting: 'Back to school!',            primary: '#1e40af', dark: '#172f82', accent: '#facc15', page: '#eef2fb', side: '#f4f6fd', fx: ['✏️', '📚', '🍎']},
-    labor:       {name: 'Labor Day',                icon: '🛠️', greeting: 'Happy Labor Day!',          primary: '#1e3a8a', dark: '#152a66', accent: '#dc2626', page: '#eef1f8', side: '#f4f6fb', fx: ['⭐', '🇺🇸', '🛠️']},
-    september:   {name: 'September',                icon: '🍁', greeting: 'Hello, September!',          primary: '#9a3412', dark: '#74270d', accent: '#fdba74', page: '#fcf1ea', side: '#fdf6f1', fx: ['🍁', '🍂']},
-    fall:        {name: 'Fall',                     icon: '🍂', greeting: 'Happy fall, y’all!',    primary: '#b45309', dark: '#8a3f07', accent: '#fcd34d', page: '#fdf4e8', side: '#fef8f0', fx: ['🍂', '🍁', '🌰']},
-    halloween:   {name: 'Halloween',                icon: '🎃', greeting: 'Happy Halloween!',           primary: '#2a1650', dark: '#1a0d33', accent: '#f97316', page: '#f2edf9', side: '#f7f3fc', fx: ['🎃', '🦇', '👻']},
-    veterans:    {name: 'Veterans Day',             icon: '🇺🇸', greeting: 'Thank you, veterans.',      primary: '#1e3a8a', dark: '#152a66', accent: '#dc2626', page: '#eef1f8', side: '#f4f6fb', fx: ['⭐', '🇺🇸']},
-    november:    {name: 'November',                 icon: '🍂', greeting: 'Hello, November!',           primary: '#7c2d12', dark: '#5c200d', accent: '#f59e0b', page: '#faf0ea', side: '#fcf5f0', fx: ['🍂', '🍁']},
-    thanksgiving:{name: 'Thanksgiving',             icon: '🦃', greeting: 'Happy Thanksgiving!',        primary: '#7c2d12', dark: '#5c200d', accent: '#f59e0b', page: '#faf0ea', side: '#fcf5f0', fx: ['🍂', '🦃', '🥧']},
-    holidays:    {name: 'Happy Holidays',           icon: '🎄', greeting: 'Happy Holidays!',            primary: '#14532d', dark: '#0d3a1f', accent: '#dc2626', page: '#eef5ef', side: '#f4f9f5', fx: ['❄️', '🎄', '✨']},
-    hanukkah:    {name: 'Hanukkah',                 icon: '🕎', greeting: 'Happy Hanukkah!',            primary: '#1d4ed8', dark: '#1639a8', accent: '#e5e7eb', page: '#eef2fc', side: '#f4f7fd', fx: ['🕎', '✨', '⭐']}
+    oaks:        {name: 'The Oaks (classic green)', icon: '🌳', greeting: '',                        primary: '#0b3d2e', dark: '#072a20', accent: '#f59e0b', page: '#eef1ed', side: '#f4f6f3', fx: []},
+    winter:      {name: 'Winter',                   icon: '⛄', greeting: 'Winter at The Oaks',       primary: '#1f4e79', dark: '#153654', accent: '#9ccfff', page: '#ecf2f8', side: '#f2f6fa', fx: ['❄️', '❄️', '✨']},
+    spring:      {name: 'Spring',                   icon: '🌸', greeting: 'Spring at The Oaks',       primary: '#3949ab', dark: '#283593', accent: '#c5cae9', page: '#eef0fa', side: '#f4f5fc', fx: ['🌸', '💐', '🦋']},
+    summer:      {name: 'Summer',                   icon: '☀️', greeting: 'Summer at The Oaks',       primary: '#0277bd', dark: '#01579b', accent: '#fde047', page: '#ebf5fb', side: '#f2f8fc', fx: ['☀️', '🌴', '🍉']},
+    fall:        {name: 'Fall',                     icon: '🍂', greeting: 'Fall at The Oaks',         primary: '#b45309', dark: '#8a3f07', accent: '#fcd34d', page: '#fdf4e8', side: '#fef8f0', fx: ['🍂', '🍁', '🌰']},
+    newyear:     {name: "New Year's",               icon: '🎆', greeting: 'Happy New Year!',          primary: '#1f2a44', dark: '#141c30', accent: '#e9b949', page: '#eef0f6', side: '#f3f4f9', fx: ['✨', '🎉', '⭐']},
+    valentine:   {name: "Valentine's Day",          icon: '💝', greeting: "Happy Valentine's Day!",   primary: '#9d174d', dark: '#750f39', accent: '#fda4c3', page: '#fbeff3', side: '#fdf4f7', fx: ['💕', '💗', '🌹']},
+    easter:      {name: 'Easter',                   icon: '🐣', greeting: 'Happy Easter!',            primary: '#6d4aa8', dark: '#523783', accent: '#f9a8d4', page: '#f7f3fb', side: '#faf7fd', fx: ['🐣', '🥚', '🌷']},
+    patriotic:   {name: 'Memorial Day / July 4th',  icon: '🇺🇸', greeting: '',                       primary: '#1e3a8a', dark: '#152a66', accent: '#dc2626', page: '#eef1f8', side: '#f4f6fb', fx: ['⭐', '🎆', '🇺🇸']},
+    halloween:   {name: 'Halloween',                icon: '🎃', greeting: 'Happy Halloween!',         primary: '#2a1650', dark: '#1a0d33', accent: '#f97316', page: '#f2edf9', side: '#f7f3fc', fx: ['🎃', '🦇', '👻']},
+    thanksgiving:{name: 'Thanksgiving',             icon: '🦃', greeting: 'Happy Thanksgiving!',      primary: '#7c2d12', dark: '#5c200d', accent: '#f59e0b', page: '#faf0ea', side: '#fcf5f0', fx: ['🍂', '🦃', '🥧']},
+    holidays:    {name: 'Happy Holidays',           icon: '🎄', greeting: 'Happy Holidays!',          primary: '#14532d', dark: '#0d3a1f', accent: '#dc2626', page: '#eef5ef', side: '#f4f9f5', fx: ['❄️', '🎄', '✨']}
   };
 
   function atMidnight(y, m, d) { return new Date(y, m, d, 0, 0, 0, 0); }
@@ -998,65 +985,34 @@ if (CAL_MODE) {
     var last = atMidnight(y, m + 1, 0), back = (last.getDay() - wd + 7) % 7;
     return atMidnight(y, m, last.getDate() - back);
   }
-  // Hanukkah runs from the evening of 24 Kislev through 2 Tevet (the day count varies by year).
-  // Uses the browser's Hebrew calendar; if unsupported, Hanukkah is simply skipped.
-  function inHanukkah(dt) {
-    try {
-      var parts = new Intl.DateTimeFormat('en-u-ca-hebrew', {month: 'long', day: 'numeric'}).formatToParts(dt);
-      var month = '', day = 0;
-      parts.forEach(function (p) { if (p.type === 'month') month = p.value; if (p.type === 'day') day = parseInt(p.value, 10); });
-      if (/kislev/i.test(month) && day >= 24) return true;
-      if (/tevet/i.test(month) && day <= 2) return true;
-    } catch (e) {}
-    return false;
-  }
-
   function pickThemeId(now) {
     var y = now.getFullYear(), m = now.getMonth(), d = now.getDate();
     var t = atMidnight(y, m, d);
 
-    // --- Specific holidays first (these win over the monthly theme) ---
+    // --- Big holidays first (these win over the season) ---
     if ((m === 11 && d >= 28) || (m === 0 && d <= 3)) return 'newyear';
+    if (m === 1 && d <= 14) return 'valentine';
     var east = easter(y);
     if (sameOrBetween(t, addDays(east, -7), east)) return 'easter';
-    var fat = addDays(east, -47);                                  // Mardi Gras
-    if (sameOrBetween(t, addDays(fat, -5), fat)) return 'mardigras';
-    if (m === 1 && d <= 14) return 'valentine';
-    if (m === 2 && d >= 10 && d <= 17) return 'stpatrick';
     var memorial = nthWeekday(y, 4, 1, -1);
     if (sameOrBetween(t, addDays(memorial, -4), memorial)) return 'patriotic';
-    if (m === 5 && d >= 17 && d <= 20) return 'juneteenth';
-    if ((m === 5 && d >= 29) || (m === 6 && d <= 5)) return 'patriotic';
-    var labor = nthWeekday(y, 8, 1, 1);
-    if (sameOrBetween(t, addDays(labor, -4), labor)) return 'labor';
+    if (m === 6 && d <= 5) return 'patriotic';
     if (m === 9 && d >= 15) return 'halloween';
-    if (m === 10 && d >= 9 && d <= 11) return 'veterans';
     var thanks = nthWeekday(y, 10, 4, 4);
     if (sameOrBetween(t, addDays(thanks, -6), addDays(thanks, 1))) return 'thanksgiving';
-    if (m === 11 && inHanukkah(t)) return 'hanukkah';
+    if (m === 11) return 'holidays';
 
-    // --- Otherwise the theme for the month ---
-    switch (m) {
-      case 0:  return 'winter';
-      case 1:  return 'winterlate';
-      case 2:  return 'bluebonnet';
-      case 3:  return 'showers';
-      case 4:  return 'garden';
-      case 5:  return 'summer';
-      case 6:  return 'heat';
-      case 7:  return 'school';
-      case 8:  return 'september';
-      case 9:  return 'fall';
-      case 10: return 'november';
-      default: return 'holidays';
-    }
+    // --- Otherwise the season ---
+    if (m >= 2 && m <= 4) return 'spring';
+    if (m >= 5 && m <= 7) return 'summer';
+    if (m >= 8 && m <= 10) return 'fall';
+    return 'winter';
   }
 
   // Greetings that depend on the date rather than on the theme
   function greetingFor(id, now) {
     if (id !== 'patriotic') return THEMES[id].greeting;
-    var m = now.getMonth();
-    return m === 4 ? 'Happy Memorial Day weekend.' : m === 5 || m === 6 ? 'Happy Fourth of July!' : 'Happy Independence Day!';
+    return now.getMonth() === 4 ? 'Happy Memorial Day weekend.' : 'Happy Fourth of July!';
   }
 
   // Use the accent color for the greeting only when it is readable on the header; otherwise white.
