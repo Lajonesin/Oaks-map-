@@ -958,6 +958,7 @@ if (CAL_MODE) {
     valentine:   {name: "Valentine's Day",          icon: '💝', greeting: "Happy Valentine's Day!",   primary: '#9d174d', dark: '#750f39', accent: '#fda4c3', page: '#fbeff3', side: '#fdf4f7', fx: ['💕', '💗', '🌹']},
     easter:      {name: 'Easter',                   icon: '🐣', greeting: 'Happy Easter!',            primary: '#6d4aa8', dark: '#523783', accent: '#f9a8d4', page: '#f7f3fb', side: '#faf7fd', fx: ['🐣', '🥚', '🌷']},
     patriotic:   {name: 'Memorial Day / July 4th',  icon: '🇺🇸', greeting: '',                       primary: '#1e3a8a', dark: '#152a66', accent: '#dc2626', page: '#eef1f8', side: '#f4f6fb', fx: ['⭐', '🎆', '🇺🇸']},
+    veterans:    {name: 'Veterans Day',             icon: '🇺🇸', greeting: 'Thank you, veterans.',    primary: '#1e3a8a', dark: '#152a66', accent: '#dc2626', page: '#eef1f8', side: '#f4f6fb', fx: ['⭐', '🇺🇸']},
     halloween:   {name: 'Halloween',                icon: '🎃', greeting: 'Happy Halloween!',         primary: '#2a1650', dark: '#1a0d33', accent: '#f97316', page: '#f2edf9', side: '#f7f3fc', fx: ['🎃', '🦇', '👻']},
     thanksgiving:{name: 'Thanksgiving',             icon: '🦃', greeting: 'Happy Thanksgiving!',      primary: '#7c2d12', dark: '#5c200d', accent: '#f59e0b', page: '#faf0ea', side: '#fcf5f0', fx: ['🍂', '🦃', '🥧']},
     holidays:    {name: 'Happy Holidays',           icon: '🎄', greeting: 'Happy Holidays!',          primary: '#14532d', dark: '#0d3a1f', accent: '#dc2626', page: '#eef5ef', side: '#f4f9f5', fx: ['❄️', '🎄', '✨']}
@@ -998,6 +999,7 @@ if (CAL_MODE) {
     if (sameOrBetween(t, addDays(memorial, -4), memorial)) return 'patriotic';
     if (m === 6 && d <= 5) return 'patriotic';
     if (m === 9 && d >= 15) return 'halloween';
+    if (m === 10 && d >= 9 && d <= 11) return 'veterans';
     var thanks = nthWeekday(y, 10, 4, 4);
     if (sameOrBetween(t, addDays(thanks, -6), addDays(thanks, 1))) return 'thanksgiving';
     if (m === 11) return 'holidays';
