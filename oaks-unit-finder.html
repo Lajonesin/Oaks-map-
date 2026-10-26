@@ -3,17 +3,18 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0b3d2e">
 <title>The Oaks of Woodlake</title>
 <style>
   * { box-sizing: border-box; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #eef1ed; margin: 0; color: #1c2620;
+    background: var(--page-bg); margin: 0; color: #1c2620;
   }
   .app { max-width: 1520px; margin: 0 auto; background: #fff; border-radius: 16px; overflow: hidden;
     box-shadow: 0 2px 10px rgba(0,0,0,0.12); }
   header {
-    background: #0b3d2e; color: #fff; padding: 16px 22px;
+    background: var(--primary); border-bottom: 4px solid var(--accent); position: relative; overflow: hidden; color: #fff; padding: 16px 22px;
     display: flex; align-items: center; gap: 14px; flex-wrap: wrap;
   }
   header .tree { font-size: 26px; }
@@ -27,7 +28,7 @@
   }
   .body-wrap { display: flex; gap: 0; align-items: flex-start; }
   @media (max-width: 860px) { .body-wrap { flex-direction: column; } }
-  .sidebar { width: 260px; flex-shrink: 0; padding: 18px; display: flex; flex-direction: column; gap: 14px; background: #f4f6f3; }
+  .sidebar { width: 260px; flex-shrink: 0; padding: 18px; display: flex; flex-direction: column; gap: 14px; background: var(--side-bg); }
   @media (max-width: 860px) { .sidebar { width: 100%; } }
   .panel { background: #fff; border: 1px solid #e2e6e0; border-radius: 12px; padding: 16px; }
   .panel-title { font-size: 12.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.4px; color: #4a5750; margin: 0 0 10px; }
@@ -37,16 +38,16 @@
     flex: 1; font-size: 15px; padding: 10px 12px; border: 1.5px solid #d7ddd4; border-radius: 8px;
     width: 100%; max-width: 100%; margin: 0; display: block;
   }
-  input[type=text]:focus { outline: none; border-color: #0b3d2e; }
+  input[type=text]:focus { outline: none; border-color: var(--primary); }
   button.find-btn {
-    background: #0b3d2e; color: #fff; border: none; border-radius: 8px; padding: 10px 14px;
+    background: var(--primary); color: #fff; border: none; border-radius: 8px; padding: 10px 14px;
     font-size: 14px; font-weight: 600; cursor: pointer; display: flex; align-items: center; gap: 6px;
     flex: 1 1 100%; justify-content: center;
   }
-  button.find-btn:active { background: #072a20; }
+  button.find-btn:active { background: var(--primary-dark); }
   .hint { font-size: 12px; color: #7a857e; margin-top: 8px; line-height: 1.5; }
   .hint b { color: #4a5750; }
-  .unit-info .big-unit { font-size: 26px; font-weight: 800; margin: 2px 0 0; color: #0b3d2e; }
+  .unit-info .big-unit { font-size: 26px; font-weight: 800; margin: 2px 0 0; color: var(--primary); }
   .unit-info .big-bldg { font-size: 14px; font-weight: 600; color: #4a5750; margin-bottom: 12px; }
   .info-row { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; border-top: 1px solid #eef0ec; }
   .info-row:first-of-type { border-top: none; }
@@ -64,11 +65,11 @@
   @media (prefers-reduced-motion: reduce) { .gate-ring { animation: none; opacity: 0.8; } }
   .lr-ring { fill: none; stroke: #f59e0b; stroke-width: 8; transform-box: fill-box; transform-origin: center; animation: lrPulse 1.4s ease-out infinite; }
   @media (prefers-reduced-motion: reduce) { .lr-ring { animation: none; opacity: 0.8; } }
-  .contact-panel { background: #f4f6f3; border: none; }
+  .contact-panel { background: var(--side-bg); border: none; }
   .contact-panel .panel-title { text-align: center; }
   .contact-row { text-align: center; font-size: 13px; margin: 6px 0; color: #1c2620; }
   .contact-row b { font-weight: 700; }
-  .contact-row a { color: #0b3d2e; font-weight: 700; text-decoration: none; }
+  .contact-row a { color: var(--primary); font-weight: 700; text-decoration: none; }
   .emergency { text-align: center; font-size: 11.5px; color: #93a196; margin-top: 8px; }
   .map-col { flex: 1; padding: 18px; min-width: 0; }
   .map-wrap { position: relative; width: 100%; border-radius: 10px; overflow: hidden; }
@@ -88,6 +89,20 @@
   .popup-bubble { animation: bubblePop .3s cubic-bezier(.34,1.56,.64,1) .1s both; transform-box: fill-box; transform-origin: center bottom; }
   .not-found-msg { display: none; background: #fdecea; border: 1px solid #f3b8b0; color: #a4322a; font-size: 13px; padding: 10px 12px; border-radius: 8px; margin-top: 10px; }
   .not-found-msg.show { display: block; }
+
+  /* ---- Seasonal themes: values are set by the theme script at the bottom of the page ---- */
+  :root { --primary: #0b3d2e; --primary-dark: #072a20; --accent: #f59e0b; --page-bg: #eef1ed; --side-bg: #f4f6f3; }
+  header > * { position: relative; z-index: 1; }
+  header .theme-greeting { font-size: 13.5px; font-weight: 600; color: var(--greet, #fff); }
+  header .theme-pick {
+    background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.3); color: #fff;
+    border-radius: 8px; padding: 6px 8px; font-size: 12.5px; max-width: 190px; cursor: pointer;
+  }
+  header .theme-pick option { color: #1c2620; background: #fff; }
+  .theme-fx { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .theme-fx span { position: absolute; top: -24px; opacity: 0.55; animation: themeFall linear infinite; }
+  @keyframes themeFall { 0% { transform: translateY(-20px) rotate(0deg); } 100% { transform: translateY(120px) rotate(200deg); } }
+  @media (prefers-reduced-motion: reduce) { .theme-fx { display: none; } }
 </style>
 </head>
 <body>
@@ -95,7 +110,9 @@
   <header>
     <span class="tree">🌳</span>
     <h1>THE OAKS OF WOODLAKE</h1>
+    <span class="theme-greeting" id="themeGreeting"></span>
     <div class="addr">📍 2100 Tanglewilde St, Houston, TX 77063</div>
+    <select class="theme-pick" id="themePicker" aria-label="Page theme" title="Change the page theme"></select>
     <button class="howto" type="button" onclick="alert('Type your unit number and press Find Unit. Your unit will be highlighted on the map.')">❓ How to use</button>
   </header>
 
@@ -923,6 +940,202 @@ if (CAL_MODE) {
     if (calXform) drawMe();
   });
 }
+</script>
+<script>
+/* ===== Seasonal / holiday themes =====
+   Themes only restyle the page chrome (header, buttons, backgrounds, header decorations).
+   Map colors (parking, laundry, gates, route, pins) are intentionally NOT themed so the map
+   stays readable and consistent all year.
+   To change dates or colors, edit THEMES and pickThemeId() below. */
+(function () {
+  var THEMES = {
+    oaks:        {name: 'The Oaks (classic green)', icon: '🌳', greeting: '',                          primary: '#0b3d2e', dark: '#072a20', accent: '#f59e0b', page: '#eef1ed', side: '#f4f6f3', fx: []},
+    newyear:     {name: "New Year's",               icon: '🎆', greeting: 'Happy New Year!',            primary: '#1f2a44', dark: '#141c30', accent: '#e9b949', page: '#eef0f6', side: '#f3f4f9', fx: ['✨', '🎉', '⭐']},
+    winter:      {name: 'Winter',                   icon: '⛄', greeting: 'Winter at The Oaks',         primary: '#1f4e79', dark: '#153654', accent: '#9ccfff', page: '#ecf2f8', side: '#f2f6fa', fx: ['❄️', '❄️', '✨']},
+    mardigras:   {name: 'Mardi Gras',               icon: '🎭', greeting: 'Laissez les bons temps rouler!', primary: '#4c1d95', dark: '#36146b', accent: '#e9b949', page: '#f1edf8', side: '#f6f3fb', fx: ['🎭', '⚜️', '✨']},
+    valentine:   {name: "Valentine's Day",          icon: '💝', greeting: "Happy Valentine's Day!",     primary: '#9d174d', dark: '#750f39', accent: '#fda4c3', page: '#fbeff3', side: '#fdf4f7', fx: ['💕', '💗', '🌹']},
+    winterlate:  {name: 'Late Winter',              icon: '🌥️', greeting: 'Almost spring!',            primary: '#475569', dark: '#334155', accent: '#cbd5e1', page: '#eff1f4', side: '#f5f6f8', fx: []},
+    stpatrick:   {name: "St. Patrick's Day",        icon: '☘️', greeting: "Happy St. Patrick's Day!",   primary: '#166534', dark: '#0f4a26', accent: '#fbbf24', page: '#edf6ee', side: '#f3f9f4', fx: ['☘️', '🍀', '✨']},
+    bluebonnet:  {name: 'Bluebonnet Season',        icon: '💐', greeting: 'Bluebonnet season!',         primary: '#3949ab', dark: '#283593', accent: '#c5cae9', page: '#eef0fa', side: '#f4f5fc', fx: ['🌸', '💐', '🦋']},
+    easter:      {name: 'Easter',                   icon: '🐣', greeting: 'Happy Easter!',              primary: '#6d4aa8', dark: '#523783', accent: '#f9a8d4', page: '#f7f3fb', side: '#faf7fd', fx: ['🐣', '🥚', '🌷']},
+    showers:     {name: 'April Showers',            icon: '☔', greeting: 'April showers',              primary: '#00796b', dark: '#005a4f', accent: '#80cbc4', page: '#ecf6f5', side: '#f2f9f8', fx: ['💧', '🌧️', '🌱']},
+    garden:      {name: 'May Garden',               icon: '🌻', greeting: 'Happy May!',                 primary: '#8a4b08', dark: '#663706', accent: '#fcd34d', page: '#fdf6e9', side: '#fef9f0', fx: ['🌻', '🐝', '🌼']},
+    patriotic:   {name: 'Patriotic',                icon: '🇺🇸', greeting: '',                         primary: '#1e3a8a', dark: '#152a66', accent: '#dc2626', page: '#eef1f8', side: '#f4f6fb', fx: ['⭐', '🎆', '🇺🇸']},
+    juneteenth:  {name: 'Juneteenth',               icon: '🎉', greeting: 'Happy Juneteenth!',          primary: '#14532d', dark: '#0d3a1f', accent: '#dc2626', page: '#eef5ef', side: '#f4f9f5', fx: ['✨', '🎉', '⭐']},
+    summer:      {name: 'Summer',                   icon: '☀️', greeting: 'Summer at The Oaks',         primary: '#0277bd', dark: '#01579b', accent: '#fde047', page: '#ebf5fb', side: '#f2f8fc', fx: ['☀️', '🌴', '🍉']},
+    heat:        {name: 'Summer Heat',              icon: '🍉', greeting: 'Stay cool!',                 primary: '#bf360c', dark: '#8f2a09', accent: '#fed7aa', page: '#fdf1ea', side: '#fef6f1', fx: ['🍉', '☀️', '🧊']},
+    school:      {name: 'Back to School',           icon: '🍎', greeting: 'Back to school!',            primary: '#1e40af', dark: '#172f82', accent: '#facc15', page: '#eef2fb', side: '#f4f6fd', fx: ['✏️', '📚', '🍎']},
+    labor:       {name: 'Labor Day',                icon: '🛠️', greeting: 'Happy Labor Day!',          primary: '#1e3a8a', dark: '#152a66', accent: '#dc2626', page: '#eef1f8', side: '#f4f6fb', fx: ['⭐', '🇺🇸', '🛠️']},
+    september:   {name: 'September',                icon: '🍁', greeting: 'Hello, September!',          primary: '#9a3412', dark: '#74270d', accent: '#fdba74', page: '#fcf1ea', side: '#fdf6f1', fx: ['🍁', '🍂']},
+    fall:        {name: 'Fall',                     icon: '🍂', greeting: 'Happy fall, y’all!',    primary: '#b45309', dark: '#8a3f07', accent: '#fcd34d', page: '#fdf4e8', side: '#fef8f0', fx: ['🍂', '🍁', '🌰']},
+    halloween:   {name: 'Halloween',                icon: '🎃', greeting: 'Happy Halloween!',           primary: '#2a1650', dark: '#1a0d33', accent: '#f97316', page: '#f2edf9', side: '#f7f3fc', fx: ['🎃', '🦇', '👻']},
+    veterans:    {name: 'Veterans Day',             icon: '🇺🇸', greeting: 'Thank you, veterans.',      primary: '#1e3a8a', dark: '#152a66', accent: '#dc2626', page: '#eef1f8', side: '#f4f6fb', fx: ['⭐', '🇺🇸']},
+    november:    {name: 'November',                 icon: '🍂', greeting: 'Hello, November!',           primary: '#7c2d12', dark: '#5c200d', accent: '#f59e0b', page: '#faf0ea', side: '#fcf5f0', fx: ['🍂', '🍁']},
+    thanksgiving:{name: 'Thanksgiving',             icon: '🦃', greeting: 'Happy Thanksgiving!',        primary: '#7c2d12', dark: '#5c200d', accent: '#f59e0b', page: '#faf0ea', side: '#fcf5f0', fx: ['🍂', '🦃', '🥧']},
+    holidays:    {name: 'Happy Holidays',           icon: '🎄', greeting: 'Happy Holidays!',            primary: '#14532d', dark: '#0d3a1f', accent: '#dc2626', page: '#eef5ef', side: '#f4f9f5', fx: ['❄️', '🎄', '✨']},
+    hanukkah:    {name: 'Hanukkah',                 icon: '🕎', greeting: 'Happy Hanukkah!',            primary: '#1d4ed8', dark: '#1639a8', accent: '#e5e7eb', page: '#eef2fc', side: '#f4f7fd', fx: ['🕎', '✨', '⭐']}
+  };
+
+  function atMidnight(y, m, d) { return new Date(y, m, d, 0, 0, 0, 0); }
+  function addDays(dt, n) { return atMidnight(dt.getFullYear(), dt.getMonth(), dt.getDate() + n); }
+  function sameOrBetween(t, a, b) { return t >= a && t <= b; }
+
+  // Easter Sunday (Gregorian), anonymous algorithm
+  function easter(y) {
+    var a = y % 19, b = Math.floor(y / 100), c = y % 100, d = Math.floor(b / 4), e = b % 4,
+        f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3),
+        h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), k = c % 4,
+        l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451),
+        mo = Math.floor((h + l - 7 * m + 114) / 31), da = ((h + l - 7 * m + 114) % 31) + 1;
+    return atMidnight(y, mo - 1, da);
+  }
+  // nth weekday (0=Sun) of a month; n = -1 for the last one
+  function nthWeekday(y, m, wd, n) {
+    if (n > 0) {
+      var first = atMidnight(y, m, 1), shift = (wd - first.getDay() + 7) % 7;
+      return atMidnight(y, m, 1 + shift + (n - 1) * 7);
+    }
+    var last = atMidnight(y, m + 1, 0), back = (last.getDay() - wd + 7) % 7;
+    return atMidnight(y, m, last.getDate() - back);
+  }
+  // Hanukkah runs from the evening of 24 Kislev through 2 Tevet (the day count varies by year).
+  // Uses the browser's Hebrew calendar; if unsupported, Hanukkah is simply skipped.
+  function inHanukkah(dt) {
+    try {
+      var parts = new Intl.DateTimeFormat('en-u-ca-hebrew', {month: 'long', day: 'numeric'}).formatToParts(dt);
+      var month = '', day = 0;
+      parts.forEach(function (p) { if (p.type === 'month') month = p.value; if (p.type === 'day') day = parseInt(p.value, 10); });
+      if (/kislev/i.test(month) && day >= 24) return true;
+      if (/tevet/i.test(month) && day <= 2) return true;
+    } catch (e) {}
+    return false;
+  }
+
+  function pickThemeId(now) {
+    var y = now.getFullYear(), m = now.getMonth(), d = now.getDate();
+    var t = atMidnight(y, m, d);
+
+    // --- Specific holidays first (these win over the monthly theme) ---
+    if ((m === 11 && d >= 28) || (m === 0 && d <= 3)) return 'newyear';
+    var east = easter(y);
+    if (sameOrBetween(t, addDays(east, -7), east)) return 'easter';
+    var fat = addDays(east, -47);                                  // Mardi Gras
+    if (sameOrBetween(t, addDays(fat, -5), fat)) return 'mardigras';
+    if (m === 1 && d <= 14) return 'valentine';
+    if (m === 2 && d >= 10 && d <= 17) return 'stpatrick';
+    var memorial = nthWeekday(y, 4, 1, -1);
+    if (sameOrBetween(t, addDays(memorial, -4), memorial)) return 'patriotic';
+    if (m === 5 && d >= 17 && d <= 20) return 'juneteenth';
+    if ((m === 5 && d >= 29) || (m === 6 && d <= 5)) return 'patriotic';
+    var labor = nthWeekday(y, 8, 1, 1);
+    if (sameOrBetween(t, addDays(labor, -4), labor)) return 'labor';
+    if (m === 9 && d >= 15) return 'halloween';
+    if (m === 10 && d >= 9 && d <= 11) return 'veterans';
+    var thanks = nthWeekday(y, 10, 4, 4);
+    if (sameOrBetween(t, addDays(thanks, -6), addDays(thanks, 1))) return 'thanksgiving';
+    if (m === 11 && inHanukkah(t)) return 'hanukkah';
+
+    // --- Otherwise the theme for the month ---
+    switch (m) {
+      case 0:  return 'winter';
+      case 1:  return 'winterlate';
+      case 2:  return 'bluebonnet';
+      case 3:  return 'showers';
+      case 4:  return 'garden';
+      case 5:  return 'summer';
+      case 6:  return 'heat';
+      case 7:  return 'school';
+      case 8:  return 'september';
+      case 9:  return 'fall';
+      case 10: return 'november';
+      default: return 'holidays';
+    }
+  }
+
+  // Greetings that depend on the date rather than on the theme
+  function greetingFor(id, now) {
+    if (id !== 'patriotic') return THEMES[id].greeting;
+    var m = now.getMonth();
+    return m === 4 ? 'Happy Memorial Day weekend.' : m === 5 || m === 6 ? 'Happy Fourth of July!' : 'Happy Independence Day!';
+  }
+
+  // Use the accent color for the greeting only when it is readable on the header; otherwise white.
+  function lum(hex) {
+    var c = [1, 3, 5].map(function (i) { return parseInt(hex.substr(i, 2), 16) / 255; })
+      .map(function (v) { return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); });
+    return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+  }
+  function contrast(a, b) { var x = lum(a), y = lum(b); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+
+  var root = document.documentElement;
+  var STORE = 'oaksTheme';
+  function readChoice() {
+    var q = '';
+    try { q = new URLSearchParams(location.search).get('theme') || ''; } catch (e) {}
+    if (q && (q === 'auto' || THEMES[q])) return q;
+    try { var s = localStorage.getItem(STORE); if (s && THEMES[s]) return s; } catch (e) {}
+    return 'auto';
+  }
+
+  var fxBox = null;
+  function buildFx(list) {
+    if (!fxBox) return;
+    fxBox.textContent = '';
+    if (!list.length) return;
+    var N = 16;
+    for (var i = 0; i < N; i++) {
+      var s = document.createElement('span');
+      s.textContent = list[i % list.length];
+      s.style.left = (3 + (i * 97 / N) + (i % 3)) + '%';
+      s.style.animationDuration = (5 + (i * 7 % 5)) + 's';
+      s.style.animationDelay = (-(i * 1.3 % 7)) + 's';
+      s.style.fontSize = (11 + (i * 5 % 8)) + 'px';
+      fxBox.appendChild(s);
+    }
+  }
+
+  function applyTheme(choice) {
+    var now = new Date();
+    var id = choice === 'auto' ? pickThemeId(now) : choice;
+    var th = THEMES[id] || THEMES.oaks;
+    root.style.setProperty('--primary', th.primary);
+    root.style.setProperty('--primary-dark', th.dark);
+    root.style.setProperty('--accent', th.accent);
+    root.style.setProperty('--greet', contrast(th.accent, th.primary) >= 4.5 ? th.accent : '#ffffff');
+    root.style.setProperty('--page-bg', th.page);
+    root.style.setProperty('--side-bg', th.side);
+    root.setAttribute('data-theme-id', id);
+    var tree = document.querySelector('header .tree'); if (tree) tree.textContent = th.icon;
+    var g = document.getElementById('themeGreeting');
+    if (g) { var txt = greetingFor(id, now); g.textContent = txt; g.style.display = txt ? '' : 'none'; }
+    var meta = document.querySelector('meta[name="theme-color"]'); if (meta) meta.setAttribute('content', th.primary);
+    buildFx(th.fx);
+  }
+
+  function init() {
+    var header = document.querySelector('header');
+    if (!header) return;
+    fxBox = document.createElement('div'); fxBox.className = 'theme-fx'; fxBox.setAttribute('aria-hidden', 'true');
+    header.appendChild(fxBox);
+
+    var sel = document.getElementById('themePicker');
+    if (sel) {
+      var auto = document.createElement('option'); auto.value = 'auto'; auto.textContent = '🗓️ Auto (by date)'; sel.appendChild(auto);
+      Object.keys(THEMES).forEach(function (k) {
+        var o = document.createElement('option'); o.value = k; o.textContent = THEMES[k].icon + ' ' + THEMES[k].name; sel.appendChild(o);
+      });
+      var cur = readChoice(); sel.value = cur;
+      sel.addEventListener('change', function () {
+        try { if (sel.value === 'auto') localStorage.removeItem(STORE); else localStorage.setItem(STORE, sel.value); } catch (e) {}
+        applyTheme(sel.value);
+      });
+    }
+    applyTheme(readChoice());
+  }
+
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init); else init();
+  window.__oaksThemes = {THEMES: THEMES, pick: pickThemeId};
+})();
 </script>
 </body>
 </html>
